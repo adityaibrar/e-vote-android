@@ -1,3 +1,4 @@
+import 'package:android_vote/views/widgets/listcalon.dart';
 import 'package:flutter/material.dart';
 import 'package:android_vote/constant/theme_shared.dart';
 
@@ -117,31 +118,32 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
                               child: TabBarView(
                             controller: _controller,
                             children: [
-                              ListView.builder(
-                                itemCount: 3,
-                                shrinkWrap: true,
-                                physics: const ScrollPhysics(),
-                                itemBuilder: (BuildContext context, int index) {
-                                  return Container(
-                                    height: 500,
-                                    child: Card(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(15)),
-                                      color: Colors.transparent,
-                                      child: ListTile(
-                                        title: Text(
-                                          "Nama Kandidat",
-                                          style: tittleTextStyle.copyWith(
-                                              color: whiteColor, fontSize: 30),
-                                        ),
-                                        subtitle: const Text(
-                                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, "),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
+                              // ListView.builder(
+                              //   itemCount: 3,
+                              //   shrinkWrap: true,
+                              //   physics: const ScrollPhysics(),
+                              //   itemBuilder: (BuildContext context, int index) {
+                              //     return Container(
+                              //       height: 500,
+                              //       child: Card(
+                              //         shape: RoundedRectangleBorder(
+                              //             borderRadius:
+                              //                 BorderRadius.circular(15)),
+                              //         color: Colors.transparent,
+                              //         child: ListTile(
+                              //           title: Text(
+                              //             "Nama Kandidat",
+                              //             style: tittleTextStyle.copyWith(
+                              //                 color: whiteColor, fontSize: 30),
+                              //           ),
+                              //           subtitle: const Text(
+                              //               "Lorem ipsum dolor sit amet, consectetur adipiscing elit, "),
+                              //         ),
+                              //       ),
+                              //     );
+                              //   },
+                              // ),
+                              listview(),
                               Center(
                                 child: Text("Voting"),
                               ),

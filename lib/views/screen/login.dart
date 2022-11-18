@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:android_vote/constant/api.dart';
+import 'package:android_vote/services/login_user.dart';
 import 'package:android_vote/views/screen/SplashScreen.dart';
 import 'package:android_vote/constant/theme_shared.dart';
 import 'package:android_vote/views/screen/home.dart';
@@ -14,30 +16,49 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final usernameController = TextEditingController();
-
-  final passwordController = TextEditingController();
+  TextEditingController usernameController = TextEditingController(),
+      passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    void getData() async {
-      var url = Uri.parse('http://10.0.2.2/api/data.php');
+    // void getData() async {
+    //   var url = Uri.parse('http://10.0.2.2/api/data.php');
 
-      var response = await http.post(url);
+    //   var response = await http.post(url);
 
-      if (response.statusCode == 200) {
-        var data = jsonDecode(response.body);
-        print(data['result']);
+    //   if (response.statusCode == 200) {
+    //     var data = jsonDecode(response.body);
+    //     print(data['result']);
+    //   }
+
+    //   // if (data['result']['username']) {
+    //   //   Navigator.push(context, Splashscreen());
+    //   //   return;
+    //   // }
+    //   // print(data);
+    // }
+
+    Future Login() async {
+      var user = usernameController.text, pass = passwordController.text;
+      var uri = Uri.parse(AppUrl.user);
+      var response = await http.post(uri, body: {
+        'username': user,
+        'password': pass,
+      });
+      var data = json.decode(response.body);
+      if (data.toString() == "Succes") {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => DashBoard()));
       }
-
-      // if (data['result']['username']) {
-      //   Navigator.push(context, Splashscreen());
-      //   return;
-      // }
-      // print(data);
+      if (data.toString() != "Succes") {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: redColor,
+          content: Text("Username atau password yang anda masukkan salah"),
+        ));
+      }
     }
 
-    Widget emailInput() {
+    Widget userInput() {
       return FieldInput(
         textFormField: TextFormField(
           controller: usernameController,
@@ -182,7 +203,7 @@ class _LoginPageState extends State<LoginPage> {
                                               SizedBox(
                                                 height: 25,
                                               ),
-                                              emailInput(),
+                                              userInput(),
                                               SizedBox(
                                                 height: 15,
                                               ),
@@ -197,14 +218,15 @@ class _LoginPageState extends State<LoginPage> {
                                                         .width -
                                                     2 * defaultMargin,
                                                 child: ElevatedButton(
-                                                  onPressed: () {
-                                                    // getData();
-                                                    Navigator.pushReplacement(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                DashBoard()));
-                                                  },
+                                                  // onPressed: () {
+                                                  //   // getData();
+                                                  //   Navigator.pushReplacement(
+                                                  //       context,
+                                                  //       MaterialPageRoute(
+                                                  //           builder: (context) =>
+                                                  //               DashBoard()));
+                                                  // },
+                                                  onPressed: Login,
                                                   child: Text(
                                                     "LOGIN",
                                                     style: tittleTextStyle
@@ -244,10 +266,10 @@ class _LoginPageState extends State<LoginPage> {
                     child: Text(
                       "CONTINUE",
                       style: tittleTextStyle.copyWith(
-                          fontSize: 25, color: primaryColor),
+                          fontSize: 25, color: secondaryColor),
                     ),
                     style: ElevatedButton.styleFrom(
-                      primary: secondaryColor,
+                      primary: Colors.green[900],
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),

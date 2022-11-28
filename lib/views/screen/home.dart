@@ -1,4 +1,4 @@
-import 'package:android_vote/views/widgets/listcalon.dart';
+import 'package:android_vote/views/widgets/list_calon.dart';
 import 'package:flutter/material.dart';
 import 'package:android_vote/constant/theme_shared.dart';
 
@@ -31,7 +31,7 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
     return Stack(
       children: [
         Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: primaryColor,
           body: SingleChildScrollView(
             controller: ScrollController(),
             child: SafeArea(
@@ -47,12 +47,30 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
                             Text(
                               "Hallo, User",
                               style: tittleTextStyle.copyWith(
-                                  fontSize: 15, color: primaryColor),
+                                  fontSize: 20, color: secondaryColor),
                             ),
+                            Spacer(),
+                            // MaterialButton(
+                            //   onPressed: () {
+                            //     //kalo ditekan menampilkan dropdown untuk logout
+                            //   },
+                            //   child: Icon(
+                            //     Icons.menu,
+                            //     color: secondaryColor,
+                            //   ),
+                            // )
+                            InkWell(
+                              onTap: () {},
+                              child: Icon(
+                                Icons.menu,
+                                size: 30,
+                                color: secondaryColor,
+                              ),
+                            )
                           ],
                         ),
-                        SizedBox(
-                          height: 25,
+                        const SizedBox(
+                          height: 20,
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width -
@@ -63,7 +81,7 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
                               Text(
                                 "Pilihlah sesuai dengan keyekinan anda agar tidak kecewa dikemudian hari",
                                 style: subtittleTextStyle.copyWith(
-                                  color: primaryColor,
+                                  color: secondaryColor,
                                   fontSize: 15,
                                   height: 1,
                                 ),
@@ -78,7 +96,7 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
                     height: 600,
                     width: width,
                     decoration: BoxDecoration(
-                      color: primaryColor,
+                      color: secondaryColor,
                       borderRadius: const BorderRadius.vertical(
                         top: Radius.circular(20),
                       ),
@@ -91,19 +109,43 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Container(
+                            child: Column(
+                              children: [
+                                Text(
+                                  "SISA WAKTU PEMILIHAN",
+                                  style: subtittleTextStyle.copyWith(
+                                      color: whiteColor),
+                                ),
+                              ],
+                            ),
+                            height: 100,
+                            width: width,
+                            decoration: BoxDecoration(
+                              color: primaryColor,
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(
+                                  16.0,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Container(
                             height: 45,
                             decoration: BoxDecoration(
-                              color: Colors.black,
-                              borderRadius: BorderRadius.circular(25),
+                              color: secondaryColor,
+                              borderRadius: BorderRadius.circular(15),
                             ),
                             child: TabBar(
                                 controller: _controller,
                                 indicator: BoxDecoration(
-                                  color: secondaryColor,
-                                  borderRadius: BorderRadius.circular(20),
+                                  color: primaryColor,
+                                  borderRadius: BorderRadius.circular(15),
                                 ),
-                                unselectedLabelColor: Colors.white,
-                                labelColor: Colors.black,
+                                unselectedLabelColor: primaryColor,
+                                labelColor: secondaryColor,
                                 tabs: const [
                                   Tab(text: "Tata Cara"),
                                   Tab(
@@ -111,42 +153,20 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
                                   ),
                                   Tab(
                                     text: "Hasil Sementara",
-                                  )
+                                  ),
                                 ]),
+                          ),
+                          const SizedBox(
+                            height: 10,
                           ),
                           Expanded(
                               child: TabBarView(
                             controller: _controller,
-                            children: [
-                              // ListView.builder(
-                              //   itemCount: 3,
-                              //   shrinkWrap: true,
-                              //   physics: const ScrollPhysics(),
-                              //   itemBuilder: (BuildContext context, int index) {
-                              //     return Container(
-                              //       height: 500,
-                              //       child: Card(
-                              //         shape: RoundedRectangleBorder(
-                              //             borderRadius:
-                              //                 BorderRadius.circular(15)),
-                              //         color: Colors.transparent,
-                              //         child: ListTile(
-                              //           title: Text(
-                              //             "Nama Kandidat",
-                              //             style: tittleTextStyle.copyWith(
-                              //                 color: whiteColor, fontSize: 30),
-                              //           ),
-                              //           subtitle: const Text(
-                              //               "Lorem ipsum dolor sit amet, consectetur adipiscing elit, "),
-                              //         ),
-                              //       ),
-                              //     );
-                              //   },
-                              // ),
-                              listview(),
+                            children: const [
                               Center(
                                 child: Text("Voting"),
                               ),
+                              ListCalonView(),
                               Center(
                                 child: Text("Hasil Sementara"),
                               )

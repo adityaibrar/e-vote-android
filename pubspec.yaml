@@ -36,6 +36,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts: ^2.0.0 #the latest version fonts package
   http: ^0.13.5
+  flutter_html: ^2.2.1
+  flutter_countdown_timer: ^4.1.0
+  dio: ^4.0.6
 
 dev_dependencies:
   flutter_test:

@@ -1,9 +1,8 @@
 import 'dart:convert';
 
 import 'package:android_vote/constant/api.dart';
-import 'package:android_vote/services/login_user.dart';
-import 'package:android_vote/views/screen/SplashScreen.dart';
 import 'package:android_vote/constant/theme_shared.dart';
+import 'package:android_vote/services/login_user.dart';
 import 'package:android_vote/views/screen/home.dart';
 import 'package:android_vote/views/widgets/text_field.dart';
 import 'package:flutter/material.dart';
@@ -39,23 +38,60 @@ class _LoginPageState extends State<LoginPage> {
     // }
 
     Future Login() async {
+      // try {
       var user = usernameController.text, pass = passwordController.text;
       var uri = Uri.parse(AppUrl.user);
-      var response = await http.post(uri, body: {
+      var response = await http.post(uri, headers: {
+        "Accept": "application/json"
+      }, body: {
         'username': user,
         'password': pass,
       });
-      var data = json.decode(response.body);
-      if (data.toString() == "Succes") {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => DashBoard()));
+      var data = json.encode(json.decode(response.body));
+      // print(data);
+      if (data.contains('Succes')) {
+        AlertDialog alert = AlertDialog(
+          title: Text("Berhasil Login"),
+          content: Container(
+            child: Text("Selamat datang"),
+          ),
+          actions: [
+            TextButton(
+              child: Text(
+                "OK",
+                style: subtittleTextStyle.copyWith(color: primaryColor),
+              ),
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => DashBoard()),
+              ),
+            ),
+          ],
+        );
+
+        showDialog(context: context, builder: (context) => alert);
+        return;
+      } else {
+        AlertDialog alert = AlertDialog(
+          title: Text("Gagal Login"),
+          content: Container(
+            child: Text(
+                "Silahkan cek kembali username dan password yang anda masukkan"),
+          ),
+          actions: [
+            TextButton(
+              child: Text("OK"),
+              onPressed: () => Navigator.pop(context),
+            ),
+          ],
+        );
+
+        showDialog(context: context, builder: (context) => alert);
+        return;
       }
-      if (data.toString() != "Succes") {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          backgroundColor: redColor,
-          content: Text("Username atau password yang anda masukkan salah"),
-        ));
-      }
+      // } catch (e) {
+      //   print("Error" + e.toString());
+      // }
     }
 
     Widget userInput() {
@@ -218,14 +254,6 @@ class _LoginPageState extends State<LoginPage> {
                                                         .width -
                                                     2 * defaultMargin,
                                                 child: ElevatedButton(
-                                                  // onPressed: () {
-                                                  //   // getData();
-                                                  //   Navigator.pushReplacement(
-                                                  //       context,
-                                                  //       MaterialPageRoute(
-                                                  //           builder: (context) =>
-                                                  //               DashBoard()));
-                                                  // },
                                                   onPressed: Login,
                                                   child: Text(
                                                     "LOGIN",

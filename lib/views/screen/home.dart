@@ -1,6 +1,9 @@
+import 'package:android_vote/model/user.dart';
 import 'package:android_vote/views/widgets/list_calon.dart';
+import 'package:android_vote/views/widgets/pooling.dart';
 import 'package:flutter/material.dart';
 import 'package:android_vote/constant/theme_shared.dart';
+import 'package:get/get.dart';
 
 class DashBoard extends StatefulWidget {
   static String route = '/home';
@@ -12,9 +15,9 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
   late TabController _controller;
 
   final List<Tab> topTabs = <Tab>[
-    new Tab(text: 'Tata Cara'),
-    new Tab(text: 'Voting'),
-    new Tab(text: 'Hasil Sementara'),
+    const Tab(text: 'Tata Cara'),
+    const Tab(text: 'Voting'),
+    const Tab(text: 'Hasil Sementara'),
   ];
 
   @override
@@ -26,6 +29,7 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final argument = ModalRoute.of(context)!.settings.arguments as GetArg;
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Stack(
@@ -33,6 +37,7 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
         Scaffold(
           backgroundColor: primaryColor,
           body: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
             controller: ScrollController(),
             child: SafeArea(
               child: Column(
@@ -45,24 +50,20 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
                         Row(
                           children: [
                             Text(
-                              "Hallo, User",
+                              "Hallo, ${argument.id} ",
                               style: tittleTextStyle.copyWith(
                                   fontSize: 20, color: secondaryColor),
                             ),
-                            Spacer(),
-                            // MaterialButton(
-                            //   onPressed: () {
-                            //     //kalo ditekan menampilkan dropdown untuk logout
-                            //   },
-                            //   child: Icon(
-                            //     Icons.menu,
-                            //     color: secondaryColor,
-                            //   ),
-                            // )
+                            Text(
+                              "Hallo, ${argument.nama} ",
+                              style: tittleTextStyle.copyWith(
+                                  fontSize: 20, color: secondaryColor),
+                            ),
+                            const Spacer(),
                             InkWell(
                               onTap: () {},
                               child: Icon(
-                                Icons.menu,
+                                Icons.person,
                                 size: 30,
                                 color: secondaryColor,
                               ),
@@ -109,30 +110,6 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Container(
-                            child: Column(
-                              children: [
-                                Text(
-                                  "SISA WAKTU PEMILIHAN",
-                                  style: subtittleTextStyle.copyWith(
-                                      color: whiteColor),
-                                ),
-                              ],
-                            ),
-                            height: 100,
-                            width: width,
-                            decoration: BoxDecoration(
-                              color: primaryColor,
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(
-                                  16.0,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Container(
                             height: 45,
                             decoration: BoxDecoration(
                               color: secondaryColor,
@@ -167,9 +144,7 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
                                 child: Text("Voting"),
                               ),
                               ListCalonView(),
-                              Center(
-                                child: Text("Hasil Sementara"),
-                              )
+                              PoolingView(),
                             ],
                           )),
                         ],
@@ -185,3 +160,5 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
     );
   }
 }
+
+List benar = [Text("dalam pengerjaan"), ListCalonView(), PoolingView()];

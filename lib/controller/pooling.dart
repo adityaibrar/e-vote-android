@@ -1,4 +1,4 @@
-import 'package:android_vote/model/calon.dart';
+import 'package:android_vote/model/pooling_calon.dart';
 import 'package:android_vote/services/calon_services.dart';
 import 'package:android_vote/views/widgets/pooling.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +23,9 @@ class PollingController extends State<PoolingView> {
   List<DataCalon> CalonList = [];
 
   loadCalon() async {
+    // Map obj = await CandidateServices.getPoolingCandidate();
     Map obj = await CandidateServices.getCandidate();
+    // List items = obj["data_voting"];
     List items = obj["data"];
     for (var i = 0; i < items.length; i++) {
       var item = items[i];
@@ -34,7 +36,6 @@ class PollingController extends State<PoolingView> {
         ),
       );
     }
-    print(CalonList);
     if (mounted) {
       setState(() {});
     }

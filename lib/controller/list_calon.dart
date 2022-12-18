@@ -5,10 +5,15 @@ import 'package:flutter/material.dart';
 class ListCalonController extends State<ListCalonView> {
   static late ListCalonController instance;
   late ListCalonView view;
+  bool visible = false;
 
   @override
   void initState() {
     instance = this;
+    Future.delayed(const Duration(milliseconds: 900), () {
+      visible = true;
+      setState(() {});
+    });
     loadCalon();
     super.initState();
   }

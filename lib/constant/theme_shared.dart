@@ -6,10 +6,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 double defaultMargin = 24;
 
-Color primaryColor = Color(0xff085A4A);
-Color secondaryColor = Color(0xffF9EBC8);
+Color primaryColor = Color(0xff228020);
+Color secondaryColor = Colors.white;
 Color whiteColor = Colors.white;
 Color blackColor = Colors.black;
+Color redColor = Colors.red;
 
 TextStyle buttonTextStyle = GoogleFonts.poppins(
   fontSize: 20,

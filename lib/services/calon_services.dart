@@ -5,9 +5,21 @@ import "package:http/http.dart" as http;
 
 class CandidateServices {
   static Future<Map> getCandidate() async {
-    Uri UrlApi = Uri.parse(AppUrl.calon);
+    Uri urlApi = Uri.parse(AppUrl.calon);
     var response = await http.get(
-      UrlApi,
+      urlApi,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    );
+    Map obj = jsonDecode(response.body);
+    return obj;
+  }
+
+  static Future<Map> getPoolingCandidate() async {
+    Uri urlApi = Uri.parse(AppUrl.pooling);
+    var response = await http.get(
+      urlApi,
       headers: {
         "Content-Type": "application/json",
       },

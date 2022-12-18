@@ -1,6 +1,8 @@
 class AppUrl {
-  static String BaseUrl = "http://10.0.2.2/e-voting/api";
-  static String calon = "$BaseUrl/candidate.php";
-  static String calonDetail = "$BaseUrl/candidateDetail.php";
-  static String user = "$BaseUrl/login.php";
+  static String baseUrl = "http://10.0.2.2/e-voting/api";
+  static String calon = "$baseUrl/candidate.php";
+  static String calonDetail = "$baseUrl/candidateDetail.php";
+  static String user = "$baseUrl/login.php";
+  static String pooling = "$baseUrl/pooling.php";
+  static String date = "$baseUrl/date.php";
 }

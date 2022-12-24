@@ -5,4 +5,5 @@ class AppUrl {
   static String user = "$baseUrl/login.php";
   static String pooling = "$baseUrl/pooling.php";
   static String date = "$baseUrl/date.php";
+  static String vote = "$baseUrl/voted.php";
 }

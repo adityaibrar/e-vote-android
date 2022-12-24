@@ -23,10 +23,8 @@ class PollingController extends State<PoolingView> {
   List<DataCalon> CalonList = [];
 
   loadCalon() async {
-    // Map obj = await CandidateServices.getPoolingCandidate();
-    Map obj = await CandidateServices.getCandidate();
-    // List items = obj["data_voting"];
-    List items = obj["data"];
+    Map obj = await CandidateServices.getPoolingCandidate();
+    List items = obj["data_voting"];
     for (var i = 0; i < items.length; i++) {
       var item = items[i];
       CalonList.add(

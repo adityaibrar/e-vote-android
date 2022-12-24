@@ -191,7 +191,7 @@ class _LoginPageState extends State<LoginPage> {
                                             child: ElevatedButton(
                                               // onPressed: Login,
                                               onPressed: () {
-                                                auth.LogIn(
+                                                auth.logIn(
                                                     usernameController.text,
                                                     passwordController.text);
                                               },

@@ -24,11 +24,11 @@ class ListCalonController extends State<ListCalonView> {
   @override
   Widget build(BuildContext context) => widget.build(context, this);
 
-  List CalonList = [];
+  List calonList = [];
 
   loadCalon() async {
     Map obj = await CandidateServices.getCandidate();
-    CalonList = obj["data"];
+    calonList = obj["data"];
     setState(() {});
   }
 }

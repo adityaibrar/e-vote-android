@@ -32,9 +32,9 @@ class CalonDetaiView extends StatefulWidget {
       var datas = await json.decode(response.body);
 
       if (datas['code'] == 200) {
-        Get.snackbar("Success", datas['message']);
+        Get.snackbar("Success", datas['message'],);
       } else if (datas['code'] == 401) {
-        Get.snackbar("Success", datas['message']);
+        Get.snackbar("Gagal", datas['message']);
       }
     }
 
@@ -47,7 +47,7 @@ class CalonDetaiView extends StatefulWidget {
       body: SingleChildScrollView(
         physics: const ScrollPhysics(),
         child: Container(
-          height: MediaQuery.of(context).size.height,
+          // height: MediaQuery.of(context).size.height,
           color: whiteColor,
           padding: const EdgeInsets.all(10.0),
           child: Column(

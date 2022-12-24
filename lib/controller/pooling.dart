@@ -20,14 +20,14 @@ class PollingController extends State<PoolingView> {
   @override
   Widget build(BuildContext context) => widget.build(context, this);
 
-  List<DataCalon> CalonList = [];
+  List<DataCalon> calonList = [];
 
   loadCalon() async {
     Map obj = await CandidateServices.getPoolingCandidate();
     List items = obj["data_voting"];
     for (var i = 0; i < items.length; i++) {
       var item = items[i];
-      CalonList.add(
+      calonList.add(
         DataCalon(
           namaCalon: item["nama_calon"],
           jumlahVote: double.parse("${item["jumlah_vote"]}"),

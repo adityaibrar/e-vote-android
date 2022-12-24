@@ -35,7 +35,7 @@ class PoolingView extends StatefulWidget {
                     dataLabelSettings: const DataLabelSettings(
                       isVisible: true,
                     ),
-                    dataSource: controller.CalonList,
+                    dataSource: controller.calonList,
                     // pointColorMapper: (DataCalon data, _) => colorList,
                     xValueMapper: (DataCalon data, _) => data.namaCalon,
                     yValueMapper: (DataCalon data, _) => data.jumlahVote),

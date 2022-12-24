@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:android_vote/constant/api.dart';
 
 class Getexten extends GetxController {
-  LogIn(String username, String password) async {
+  logIn(String username, String password) async {
     var uri = Uri.parse(AppUrl.user);
     Map data = {
       'username': username,
@@ -17,7 +17,6 @@ class Getexten extends GetxController {
     };
 
     var respons = await http.post(uri, body: data);
-    var datas = jsonEncode(jsonDecode(respons.body));
     final Map<String, dynamic> datajson = json.decode(respons.body);
     var coba = await json.decode(respons.body);
 
@@ -46,10 +45,8 @@ class Getexten extends GetxController {
     } else if (coba['code'] == 401) {
       Get.defaultDialog(
         title: "Login Tidak berhasil",
-        content: Container(
-          child: Text(
-              "Silahkan cek kembali username dan password yang anda masukkan"),
-        ),
+        content: const  Text(
+            "Silahkan cek kembali username dan password yang anda masukkan"),
         actions: [
           TextButton(
             style: TextButton.styleFrom(backgroundColor: primaryColor),
@@ -65,10 +62,8 @@ class Getexten extends GetxController {
     } else if (coba['code'] == 404) {
       Get.defaultDialog(
         title: "Username dan Password yang anda masukkan tidak valid",
-        content: Container(
-          child: Text(
-              "Silahkan cek kembali username dan password yang anda masukkan"),
-        ),
+        content: const Text(
+            "Silahkan cek kembali username dan password yang anda masukkan"),
         actions: [
           TextButton(
             style: TextButton.styleFrom(backgroundColor: primaryColor),

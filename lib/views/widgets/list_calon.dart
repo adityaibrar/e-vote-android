@@ -10,18 +10,18 @@ class ListCalonView extends StatefulWidget {
     controller.view = this;
 
     return Scaffold(
-      body: controller.CalonList.length == null
+      body: controller.calonList.length == null
           ? Center(
               child: CircularProgressIndicator(
                 color: primaryColor,
               ),
             )
           : ListView.builder(
-              itemCount: controller.CalonList.length,
+              itemCount: controller.calonList.length,
               shrinkWrap: true,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (BuildContext context, int index) {
-                var item = controller.CalonList[index];
+                var item = controller.calonList[index];
                 return AnimatedContainer(
                   duration: const Duration(milliseconds: 900),
                   margin: EdgeInsets.only(top: controller.visible ? 0 : 100),

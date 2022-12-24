@@ -6,6 +6,8 @@ import 'package:android_vote/constant/theme_shared.dart';
 
 class DashBoard extends StatefulWidget {
   static String route = '/home';
+
+  const DashBoard({super.key});
   @override
   State<DashBoard> createState() => _DashBoardState();
 }

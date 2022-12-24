@@ -1,5 +1,6 @@
 import 'package:android_vote/views/screen/SplashScreen.dart';
 import 'package:android_vote/views/screen/home.dart';
+import 'package:android_vote/views/screen/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:android_vote/constant/theme_shared.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const Splashscreen(),
         '/home': (context) => DashBoard(),
+        '/login': (context) => LoginPage(),
       },
       // home: Splashscreen(),
       theme: ThemeData(

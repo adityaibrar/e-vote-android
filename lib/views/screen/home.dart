@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:android_vote/model/user.dart';
+import 'package:android_vote/services/share_prefs.dart';
 import 'package:android_vote/views/widgets/list_calon.dart';
 import 'package:android_vote/views/widgets/pooling.dart';
 import 'package:flutter/material.dart';
 import 'package:android_vote/constant/theme_shared.dart';
+import 'package:get/get.dart';
 
 class DashBoard extends StatefulWidget {
   static String route = '/home';
@@ -25,6 +29,10 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _controller = TabController(vsync: this, length: 3);
+  }
+
+  void doLogout() async {
+    var usr = await SharedPrefs().removeUser();
   }
 
   @override
@@ -56,7 +64,39 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
                             ),
                             const Spacer(),
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                Get.defaultDialog(
+                                    title: "Log Out dari Aplikasi E-VOTE?",
+                                    content: const Text(
+                                        "Tekan tombol YA jika anda yakin akan keluar dari Aplikasi E-VOTE...\n\nTekan tombol TIDAK jika anda ingin kembali ke Aplikasi E-VOTE..."),
+                                    actions: [
+                                      TextButton(
+                                        style: TextButton.styleFrom(
+                                            backgroundColor: primaryColor),
+                                        onPressed: () {
+                                          doLogout();
+                                          Get.toNamed('/login');
+                                        },
+                                        child: Text(
+                                          "YA",
+                                          style: fieldTextStyle.copyWith(
+                                              color: whiteColor),
+                                        ),
+                                      ),
+                                      TextButton(
+                                        style: TextButton.styleFrom(
+                                            backgroundColor: Colors.red),
+                                        onPressed: () {
+                                          Get.back();
+                                        },
+                                        child: Text(
+                                          "TIDAK",
+                                          style: fieldTextStyle.copyWith(
+                                              color: whiteColor),
+                                        ),
+                                      ),
+                                    ]);
+                              },
                               child: Icon(
                                 Icons.person,
                                 size: 30,

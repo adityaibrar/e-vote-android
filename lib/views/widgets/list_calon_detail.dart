@@ -20,7 +20,6 @@ class CalonDetaiView extends StatefulWidget {
     void dataUser() async {
       var usr = await SharedPrefs().getUser();
       User user = User.fromJson(json.decode(usr));
-      // print(user.idUser);
 
       var uri = Uri.parse(AppUrl.vote);
       Map data = {
@@ -32,9 +31,45 @@ class CalonDetaiView extends StatefulWidget {
       var datas = await json.decode(response.body);
 
       if (datas['code'] == 200) {
-        Get.snackbar("Success", datas['message'],);
+        Get.defaultDialog(
+          title: 'Berhasil',
+          content: Text(
+            "Terima kasih pemilihan anda berhasil disimpan",
+            style: fieldTextStyle.copyWith(color: blackColor),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Get.back();
+              },
+              style: TextButton.styleFrom(backgroundColor: primaryColor),
+              child: Text(
+                "OK",
+                style: fieldTextStyle.copyWith(color: whiteColor),
+              ),
+            ),
+          ],
+        );
       } else if (datas['code'] == 401) {
-        Get.snackbar("Gagal", datas['message']);
+        Get.defaultDialog(
+          title: 'Pemilihan Gagal!!!',
+          content: Text(
+            "Anda sudah pernah memilih! 1 Akun hanya dapat menginput pemilihan sebanyak 1 Kali",
+            style: fieldTextStyle.copyWith(color: blackColor),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Get.back();
+              },
+              style: TextButton.styleFrom(backgroundColor: redColor),
+              child: Text(
+                "OK",
+                style: fieldTextStyle.copyWith(color: whiteColor),
+              ),
+            ),
+          ],
+        );
       }
     }
 
@@ -47,7 +82,6 @@ class CalonDetaiView extends StatefulWidget {
       body: SingleChildScrollView(
         physics: const ScrollPhysics(),
         child: Container(
-          // height: MediaQuery.of(context).size.height,
           color: whiteColor,
           padding: const EdgeInsets.all(10.0),
           child: Column(

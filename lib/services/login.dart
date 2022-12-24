@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:android_vote/constant/theme_shared.dart';
 import 'package:android_vote/model/user.dart';
+import 'package:android_vote/services/share_prefs.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -18,9 +19,11 @@ class Getexten extends GetxController {
     var respons = await http.post(uri, body: data);
     var datas = jsonEncode(jsonDecode(respons.body));
     final Map<String, dynamic> datajson = json.decode(respons.body);
-    // print(respons.body);
+    var coba = await json.decode(respons.body);
 
-    if (datas.contains('Succes')) {
+    if (coba['code'] == 200) {
+      User user = User.fromJson(coba['user']);
+      await SharedPrefs().storeUser(json.encode(user));
       Get.defaultDialog(
           title: "Login Succesfully",
           content: const Text("Berhasil Login"),
@@ -28,11 +31,9 @@ class Getexten extends GetxController {
             TextButton(
               style: TextButton.styleFrom(backgroundColor: primaryColor),
               onPressed: () {
-                // Get.toNamed('/home',
-                //     arguments: datajson['data_user'][0]['nama']);
                 Get.toNamed('/home',
-                    arguments: GetArg(datajson['data_user'][0]['id_user'],
-                        datajson['data_user'][0]['nama']));
+                    arguments: GetArg(
+                        datajson['user']['id_user'], datajson['user']['nama']));
               },
               child: Text(
                 "OK",
@@ -40,7 +41,9 @@ class Getexten extends GetxController {
               ),
             ),
           ]);
-    } else if (datas.contains('Password_salah')) {
+      // return datas.contains;
+      // } else if (datas.contains('Password_salah')) {
+    } else if (coba['code'] == 401) {
       Get.defaultDialog(
         title: "Login Tidak berhasil",
         content: Container(
@@ -58,7 +61,8 @@ class Getexten extends GetxController {
           ),
         ],
       );
-    } else if (datas.contains('Data tidak ditemukan, lanjutkan registrasi?')) {
+      // } else if (datas.contains('Data tidak ditemukan, lanjutkan registrasi?')) {
+    } else if (coba['code'] == 404) {
       Get.defaultDialog(
         title: "Username dan Password yang anda masukkan tidak valid",
         content: Container(

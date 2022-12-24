@@ -1,9 +1,7 @@
 import 'package:android_vote/constant/theme_shared.dart';
-import 'package:android_vote/model/user.dart';
 import 'package:android_vote/services/login.dart';
 import 'package:android_vote/views/widgets/text_field.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class LoginPage extends StatefulWidget {
   static String route = '/login';

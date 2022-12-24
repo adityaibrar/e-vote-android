@@ -18,12 +18,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => Splashscreen(),
+        '/': (context) => const Splashscreen(),
         '/home': (context) => DashBoard(),
       },
       // home: Splashscreen(),
       theme: ThemeData(
-          primaryColor: primaryColor, canvasColor: Colors.transparent),
+        primaryColor: primaryColor,
+        canvasColor: Colors.transparent,
+      ),
     );
   }
 }

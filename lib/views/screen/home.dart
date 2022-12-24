@@ -3,7 +3,6 @@ import 'package:android_vote/views/widgets/list_calon.dart';
 import 'package:android_vote/views/widgets/pooling.dart';
 import 'package:flutter/material.dart';
 import 'package:android_vote/constant/theme_shared.dart';
-import 'package:get/get.dart';
 
 class DashBoard extends StatefulWidget {
   static String route = '/home';
@@ -23,7 +22,6 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-
     _controller = TabController(vsync: this, length: 3);
   }
 
@@ -49,11 +47,6 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
                       children: [
                         Row(
                           children: [
-                            Text(
-                              "Hallo, ${argument.id} ",
-                              style: tittleTextStyle.copyWith(
-                                  fontSize: 20, color: secondaryColor),
-                            ),
                             Text(
                               "Hallo, ${argument.nama} ",
                               style: tittleTextStyle.copyWith(
@@ -160,5 +153,3 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
     );
   }
 }
-
-List benar = [Text("dalam pengerjaan"), ListCalonView(), PoolingView()];

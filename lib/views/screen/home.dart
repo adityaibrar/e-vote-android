@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:android_vote/model/user.dart';
 import 'package:android_vote/services/share_prefs.dart';
+import 'package:android_vote/views/screen/tata_cara.dart';
 import 'package:android_vote/views/widgets/list_calon.dart';
 import 'package:android_vote/views/widgets/pooling.dart';
 import 'package:flutter/material.dart';
@@ -175,9 +176,7 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
                               child: TabBarView(
                             controller: _controller,
                             children: const [
-                              Center(
-                                child: Text("Voting"),
-                              ),
+                              Rules(),
                               ListCalonView(),
                               PoolingView(),
                             ],

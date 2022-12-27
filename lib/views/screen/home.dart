@@ -1,13 +1,17 @@
 import 'dart:convert';
 
+import 'package:android_vote/constant/api.dart';
 import 'package:android_vote/model/user.dart';
 import 'package:android_vote/services/share_prefs.dart';
+import 'package:android_vote/views/screen/closed_event.dart';
 import 'package:android_vote/views/screen/tata_cara.dart';
 import 'package:android_vote/views/widgets/list_calon.dart';
 import 'package:android_vote/views/widgets/pooling.dart';
 import 'package:flutter/material.dart';
 import 'package:android_vote/constant/theme_shared.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 class DashBoard extends StatefulWidget {
   static String route = '/home';
@@ -30,10 +34,34 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _controller = TabController(vsync: this, length: 3);
+    checkTime();
   }
 
   void doLogout() async {
     var usr = await SharedPrefs().removeUser();
+  }
+
+  bool isSameTime = false;
+
+  checkTime() async {
+    var uri = Uri.parse(AppUrl.date);
+    var respons =
+        await http.get(uri, headers: {'Content-Type': 'Application/json'});
+    final Map<String, dynamic> datajson = json.decode(respons.body);
+    var tanggal = datajson['data_date']['waktu'];
+
+    DateTime now = DateTime.now();
+    String formatter = DateFormat('yyyy-MM-d').format(now);
+
+    if (tanggal == formatter) {
+      setState(() {
+        isSameTime = true;
+      });
+    } else {
+      setState(() {
+        isSameTime = false;
+      });
+    }
   }
 
   @override
@@ -61,7 +89,7 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
                             Text(
                               "Hallo, ${argument.nama} ",
                               style: tittleTextStyle.copyWith(
-                                  fontSize: 20, color: secondaryColor),
+                                  fontSize: 15, color: secondaryColor),
                             ),
                             const Spacer(),
                             InkWell(
@@ -88,6 +116,7 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
                                         style: TextButton.styleFrom(
                                             backgroundColor: Colors.red),
                                         onPressed: () {
+                                          checkTime();
                                           Get.back();
                                         },
                                         child: Text(
@@ -175,10 +204,14 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
                           Expanded(
                               child: TabBarView(
                             controller: _controller,
-                            children: const [
-                              Rules(),
-                              ListCalonView(),
-                              PoolingView(),
+                            children: [
+                              const Rules(),
+                              isSameTime
+                                  ? const ListCalonView()
+                                  : const ClosedEvent(),
+                              isSameTime
+                                  ? const PoolingView()
+                                  : const ClosedEvent(),
                             ],
                           )),
                         ],

@@ -45,7 +45,7 @@ class Getexten extends GetxController {
     } else if (coba['code'] == 401) {
       Get.defaultDialog(
         title: "Login Tidak berhasil",
-        content: const  Text(
+        content: const Text(
             "Silahkan cek kembali username dan password yang anda masukkan"),
         actions: [
           TextButton(

@@ -158,7 +158,7 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
                     ),
                   ),
                   Container(
-                    height: 600,
+                    height: height,
                     width: width,
                     decoration: BoxDecoration(
                       color: secondaryColor,

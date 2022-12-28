@@ -90,12 +90,15 @@ class _LoginPageState extends State<LoginPage> {
           padding: EdgeInsets.symmetric(horizontal: defaultMargin),
           children: [
             const SizedBox(
-              height: 20,
+              height: 45,
             ),
             Image.asset(
               "assets/images/vector.png",
-              height: 300,
+              height: 250,
               fit: BoxFit.contain,
+            ),
+            const SizedBox(
+              height: 20.0,
             ),
             Text(
               "Welcome",
@@ -104,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
               textAlign: TextAlign.center,
             ),
             Text(
-              "Sebelum kita memilih kandidat ketua Organisasi sebaiknya kita harus Log In dahulu supaya sistem pemilihan ketua tidak ada kecurangan",
+              "Sebelum anda memilih calon ketua osis setidaknya anda telah berpikir siapa yang layak untuk menjadi ketua di periode berikutnya.",
               style: subtittleTextStyle.copyWith(fontSize: 20),
               textAlign: TextAlign.center,
             ),

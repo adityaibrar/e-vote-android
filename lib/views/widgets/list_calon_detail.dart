@@ -87,7 +87,7 @@ class CalonDetaiView extends StatefulWidget {
           child: Column(
             children: <Widget>[
               Image.network(
-                  "http://10.0.2.2/e-voting/assets/foto_calon/${item!["gambar"]}"),
+                  "https://simpeosis.smkn1tapen.sch.id/assets/foto_calon/${item!["gambar"]}"),
               Card(
                 color: primaryColor,
                 child: Html(

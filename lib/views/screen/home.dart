@@ -116,7 +116,6 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
                                         style: TextButton.styleFrom(
                                             backgroundColor: Colors.red),
                                         onPressed: () {
-                                          checkTime();
                                           Get.back();
                                         },
                                         child: Text(
@@ -136,7 +135,7 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
                           ],
                         ),
                         const SizedBox(
-                          height: 20,
+                          height: 10,
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width -
@@ -145,7 +144,7 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Pilihlah sesuai dengan keyekinan anda agar tidak kecewa dikemudian hari",
+                                "Kepemimpinan bukanlah tentang pemilihan berikutnya, Tapi ini tentang generasi berikutnya.",
                                 style: subtittleTextStyle.copyWith(
                                   color: secondaryColor,
                                   fontSize: 15,

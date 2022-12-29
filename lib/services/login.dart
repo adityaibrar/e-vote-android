@@ -40,8 +40,6 @@ class Getexten extends GetxController {
               ),
             ),
           ]);
-      // return datas.contains;
-      // } else if (datas.contains('Password_salah')) {
     } else if (coba['code'] == 401) {
       Get.defaultDialog(
         title: "Login Tidak berhasil",
@@ -58,7 +56,6 @@ class Getexten extends GetxController {
           ),
         ],
       );
-      // } else if (datas.contains('Data tidak ditemukan, lanjutkan registrasi?')) {
     } else if (coba['code'] == 404) {
       Get.defaultDialog(
         title: "Username dan Password yang anda masukkan tidak valid",

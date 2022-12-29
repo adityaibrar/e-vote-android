@@ -104,7 +104,7 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
                                             backgroundColor: primaryColor),
                                         onPressed: () {
                                           doLogout();
-                                          Get.toNamed('/login');
+                                          Get.offAllNamed('/login');
                                         },
                                         child: Text(
                                           "YA",

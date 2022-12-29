@@ -20,8 +20,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const Splashscreen(),
-        '/home': (context) => DashBoard(),
-        '/login': (context) => LoginPage(),
+        '/home': (context) => const DashBoard(),
+        '/login': (context) => const LoginPage(),
       },
       // home: Splashscreen(),
       theme: ThemeData(

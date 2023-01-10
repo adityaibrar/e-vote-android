@@ -50,7 +50,7 @@ class ListCalonView extends StatefulWidget {
                               child: Column(
                                 children: [
                                   Image.network(
-                                      "https://simpeosis.smkn1tapen.sch.id/assets/foto_calon/${item["gambar"]}"),
+                                      "http://e-vote.wstif3a-bws.id//assets/foto_calon/${item["gambar"]}"),
                                   Text(
                                     "${item["nama_calon"]}",
                                     style: tittleTextStyle.copyWith(

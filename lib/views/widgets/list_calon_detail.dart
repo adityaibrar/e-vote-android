@@ -40,7 +40,7 @@ class CalonDetaiView extends StatefulWidget {
           actions: [
             TextButton(
               onPressed: () {
-                Get.back();
+                Get.offAllNamed('/home');
               },
               style: TextButton.styleFrom(backgroundColor: primaryColor),
               child: Text(
@@ -60,7 +60,7 @@ class CalonDetaiView extends StatefulWidget {
           actions: [
             TextButton(
               onPressed: () {
-                Get.back();
+                Get.offAllNamed('/home');
               },
               style: TextButton.styleFrom(backgroundColor: redColor),
               child: Text(
@@ -82,12 +82,13 @@ class CalonDetaiView extends StatefulWidget {
       body: SingleChildScrollView(
         physics: const ScrollPhysics(),
         child: Container(
+          height: 850,
           color: whiteColor,
           padding: const EdgeInsets.all(10.0),
           child: Column(
             children: <Widget>[
               Image.network(
-                  "https://simpeosis.smkn1tapen.sch.id/assets/foto_calon/${item!["gambar"]}"),
+                  "http://e-vote.wstif3a-bws.id//assets/foto_calon/${item!["gambar"]}"),
               Card(
                 color: primaryColor,
                 child: Html(

@@ -51,8 +51,7 @@ class _DashBoardState extends State<DashBoard> with TickerProviderStateMixin {
     var tanggal = datajson['data_date']['waktu'];
 
     DateTime now = DateTime.now();
-    String formatter = DateFormat('yyyy-MM-d').format(now);
-
+    String formatter = DateFormat('yyyy-MM-dd').format(now);
     if (tanggal == formatter) {
       setState(() {
         isSameTime = true;

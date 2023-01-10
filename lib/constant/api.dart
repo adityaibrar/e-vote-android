@@ -1,5 +1,5 @@
 class AppUrl {
-  static String baseUrl = "https://simpeosis.smkn1tapen.sch.id/API";
+  static String baseUrl = "http://e-vote.wstif3a-bws.id//API";
   static String calon = "$baseUrl/candidate.php";
   static String calonDetail = "$baseUrl/candidateDetail.php";
   static String user = "$baseUrl/login.php";
